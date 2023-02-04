@@ -39,6 +39,8 @@
     [self createBottomLeftPinView];
     [self createBottomRightPinView];
     [self createCenterPinView];
+    [self createLeftCenterPinView];
+    [self createRightCenterPinView];
 }
 
 -(void)createPinTopView
@@ -126,5 +128,40 @@
 
     [windowView addConstraints:@[centerYConstraint, centerXConstraint, widthConstraint, heightConstraint]];
 }
+
+-(void)createLeftCenterPinView
+{
+    NSView *windowView = [self.window contentView];
+
+    BackgroundColorView *pinView = [[BackgroundColorView alloc] init];
+    pinView.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [windowView addSubview:pinView];
+    
+    NSLayoutConstraint *leftConstraint = [NSLayoutConstraint constraintWithItem:pinView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:windowView attribute:NSLayoutAttributeLeft multiplier:1.0 constant:50];
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:pinView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:100];
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:pinView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:100];
+    NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint constraintWithItem:pinView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:windowView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+
+    [windowView addConstraints:@[leftConstraint, centerYConstraint, widthConstraint, heightConstraint]];
+}
+
+-(void)createRightCenterPinView
+{
+    NSView *windowView = [self.window contentView];
+
+    BackgroundColorView *pinView = [[BackgroundColorView alloc] init];
+    pinView.translatesAutoresizingMaskIntoConstraints = NO;
+
+    [windowView addSubview:pinView];
+    
+    NSLayoutConstraint *rightConstraint = [NSLayoutConstraint constraintWithItem:pinView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:windowView attribute:NSLayoutAttributeRight multiplier:1.0 constant:-50];
+    NSLayoutConstraint *widthConstraint = [NSLayoutConstraint constraintWithItem:pinView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:100];
+    NSLayoutConstraint *heightConstraint = [NSLayoutConstraint constraintWithItem:pinView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:100];
+    NSLayoutConstraint *centerYConstraint = [NSLayoutConstraint constraintWithItem:pinView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:windowView attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0];
+
+    [windowView addConstraints:@[rightConstraint, centerYConstraint, widthConstraint, heightConstraint]];
+}
+
 
 @end
